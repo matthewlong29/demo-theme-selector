@@ -15,30 +15,73 @@ export default {
     ThemeOptions
   },
   mounted() {
-    const toggleSwitch = document.querySelector(
-      '.theme-switch input[type="radio"]'
-    );
+    const themeOne = document.querySelector("#themeOne");
+    const themeTwo = document.querySelector("#themeTwo");
+    const themeThree = document.querySelector("#themeThree");
+    const themeFour = document.querySelector("#themeFour");
+
     const currentTheme = localStorage.getItem("theme");
 
     if (currentTheme) {
       document.documentElement.setAttribute("data-theme", currentTheme);
-
-      if (currentTheme === "dark") {
-        toggleSwitch.checked = true;
-      }
     }
 
-    function switchTheme(e) {
-      if (e.target.checked) {
-        document.documentElement.setAttribute("data-theme", "dark");
-        localStorage.setItem("theme", "dark");
+    /**
+     * selectThemeOne.
+     */
+    function selectThemeOne(event) {
+      if (event.target.checked) {
+        document.documentElement.setAttribute("data-theme", "one");
+        localStorage.setItem("theme", "one");
       } else {
-        document.documentElement.setAttribute("data-theme", "light");
-        localStorage.setItem("theme", "light");
+        document.documentElement.setAttribute("data-theme", "one");
+        localStorage.setItem("theme", "one");
       }
     }
 
-    toggleSwitch.addEventListener("change", switchTheme, false);
+    /**
+     * selectThemeTwo.
+     */
+    function selectThemeTwo(event) {
+      if (event.target.checked) {
+        document.documentElement.setAttribute("data-theme", "two");
+        localStorage.setItem("theme", "two");
+      } else {
+        document.documentElement.setAttribute("data-theme", "two");
+        localStorage.setItem("theme", "two");
+      }
+    }
+
+    /**
+     * selectThemeThree.
+     */
+    function selectThemeThree(event) {
+      if (event.target.checked) {
+        document.documentElement.setAttribute("data-theme", "three");
+        localStorage.setItem("theme", "three");
+      } else {
+        document.documentElement.setAttribute("data-theme", "three");
+        localStorage.setItem("theme", "three");
+      }
+    }
+
+    /**
+     * selectThemeFour.
+     */
+    function selectThemeFour(event) {
+      if (event.target.checked) {
+        document.documentElement.setAttribute("data-theme", "four");
+        localStorage.setItem("theme", "four");
+      } else {
+        document.documentElement.setAttribute("data-theme", "four");
+        localStorage.setItem("theme", "four");
+      }
+    }
+
+    themeOne.addEventListener("change", selectThemeOne, false);
+    themeTwo.addEventListener("change", selectThemeTwo, false);
+    themeThree.addEventListener("change", selectThemeThree, false);
+    themeFour.addEventListener("change", selectThemeFour, false);
   }
 };
 </script>
