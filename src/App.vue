@@ -16,14 +16,25 @@ export default {
   },
   mounted() {
     const toggleSwitch = document.querySelector(
-      '.theme-switch input[type="checkbox"]'
+      '.theme-switch input[type="radio"]'
     );
+    const currentTheme = localStorage.getItem("theme");
+
+    if (currentTheme) {
+      document.documentElement.setAttribute("data-theme", currentTheme);
+
+      if (currentTheme === "dark") {
+        toggleSwitch.checked = true;
+      }
+    }
 
     function switchTheme(e) {
       if (e.target.checked) {
         document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
       } else {
         document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
       }
     }
 
@@ -34,35 +45,58 @@ export default {
 
 <style lang="scss">
 :root {
-  --primary-color: #302ae6;
-  --secondary-color: #536390;
-  --accent-color: #66bb6a;
-  --font-color: #424242;
-  --bg-color: #fff;
-  --heading-color: #292922;
+  --primaryOne: rgb(57, 65, 75);
+  --primaryOneTransparent: rgba(57, 65, 75, 0.15);
+  --primaryTwo: rgb(31, 35, 39);
+  --primaryTwoTransparent: rgba(31, 35, 39, 0.15);
+  --accent: rgb(78, 204, 163);
+  --accentTransparent: rgba(78, 204, 163, 0.15);
 }
-
-[data-theme="dark"] {
-  --primary-color: #9a97f3;
-  --secondary-color: #818cab;
-  --accent-color: #ae49bb;
-  --font-color: #e1e1ff;
-  --bg-color: #161625;
-  --heading-color: #818cab;
+[data-theme="one"] {
+  --primaryOne: rgb(57, 65, 75);
+  --primaryOneTransparent: rgba(57, 65, 75, 0.15);
+  --primaryTwo: rgb(31, 35, 39);
+  --primaryTwoTransparent: rgba(31, 35, 39, 0.15);
+  --accent: rgb(78, 204, 163);
+  --accentTransparent: rgba(78, 204, 163, 0.15);
+}
+[data-theme="two"] {
+  --primaryOne: rgb(82, 82, 82);
+  --primaryOneTransparent: rgba(82, 82, 82, 0.15);
+  --primaryTwo: rgb(49, 49, 49);
+  --primaryTwoTransparent: rgba(49, 49, 49, 0.15);
+  --accent: rgb(219, 80, 89);
+  --accentTransparent: rgba(219, 80, 89, 0.15);
+}
+[data-theme="three"] {
+  --primaryOne: rgb(250, 245, 239);
+  --primaryOneTransparent: rgba(250, 245, 239, 0.15);
+  --primaryTwo: rgb(215, 209, 201);
+  --primaryTwoTransparent: rgba(215, 209, 201, 0.15);
+  --accent: rgb(103, 47, 47);
+  --accentTransparent: rgba(103, 47, 47, 0.15);
+}
+[data-theme="four"] {
+  --primaryOne: rgb(110, 33, 66);
+  --primaryOneTransparent: rgba(110, 33, 66, 0.15);
+  --primaryTwo: rgb(148, 56, 85);
+  --primaryTwoTransparent: rgba(148, 56, 85, 0.15);
+  --accent: rgb(255, 214, 146);
+  --accentTransparent: rgba(255, 214, 146, 0.15);
 }
 
 body {
   margin: 0 auto;
-  background-color: var(--bg-color);
-  color: var(--font-color);
+  background-color: var(--primaryTwo);
+  color: var(--accent);
   max-width: 800px;
 }
 
 h1 {
-  color: var(--secondary-color);
+  color: var(--primaryOne);
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--accent);
 }
 </style>
